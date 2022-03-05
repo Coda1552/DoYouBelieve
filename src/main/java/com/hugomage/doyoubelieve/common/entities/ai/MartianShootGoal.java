@@ -51,7 +51,7 @@ public class MartianShootGoal extends Goal {
 
     protected void tryHurtTarget(MartianEntity entity, double distanceTo){
         BlockPos blockpos = this.entity.blockPosition();
-        RayGunLaserEntity laser = DYBEntities.RAYGUNLASER.get().create(this.entity.level);
+        RayGunLaserEntity laser = DYBEntities.RAYGUN_LASER.get().create(this.entity.level);
         laser.moveTo(blockpos.getX(), blockpos.getY(), blockpos.getZ());
         Vector3d vec = this.entity.getViewVector(1.0f);
         this.entity.level.addFreshEntity(laser);
