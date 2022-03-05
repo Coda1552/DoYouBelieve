@@ -1,61 +1,63 @@
 package com.github.coda1552.common.entities;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.FlyingMovementController;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IFlyingAnimal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.pathfinding.FlyingPathNavigator;
-import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.animal.FlyingAnimal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-public class MothmanEntity extends MonsterEntity implements IFlyingAnimal {
+public class MothmanEntity extends Monster implements FlyingAnimal {
 
-    public MothmanEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public MothmanEntity(EntityType<? extends Monster> type, Level worldIn) {
         super(type, worldIn);
-        this.moveControl = new FlyingMovementController(this, 10, false);
+        this.moveControl = new FlyingMoveControl(this, 10, false);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PlayerEntity.class, 6.0F, 1.0D, 1.2D));
+        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.2D));
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
     }
 
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder setCustomAttributes(){
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 80.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.30D)
                 .add(Attributes.FLYING_SPEED, 0.60D)
                 .add(Attributes.ATTACK_DAMAGE, 7D)
-                .add(Attributes.ATTACK_SPEED, 6D)
-                .add(Attributes.ATTACK_KNOCKBACK, 1D);
+                .add(Attributes.ATTACK_SPEED, 6D);
     }
 
-    protected PathNavigator createNavigation(World p_175447_1_) {
-        FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, p_175447_1_);
+    protected PathNavigation createNavigation(Level level) {
+        FlyingPathNavigation flyingpathnavigator = new FlyingPathNavigation(this, level);
         flyingpathnavigator.setCanOpenDoors(false);
         flyingpathnavigator.setCanFloat(true);
         return flyingpathnavigator;
     }
 
-    public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
+    @Override
+    public boolean causeFallDamage(float p_147187_, float p_147188_, DamageSource p_147189_) {
         return false;
     }
 
@@ -66,7 +68,7 @@ public class MothmanEntity extends MonsterEntity implements IFlyingAnimal {
         return !this.onGround;
     }
 
-    protected int getExperienceReward(PlayerEntity p_70693_1_) {
+    protected int getExperienceReward(Player p_70693_1_) {
         if (this.isBaby()) {
             this.xpReward = (int)((float)this.xpReward * 6.5F);
         }
@@ -76,8 +78,7 @@ public class MothmanEntity extends MonsterEntity implements IFlyingAnimal {
 
     @Nullable
     @Override
-    protected SoundEvent getAmbientSound ()
-    {
+    protected SoundEvent getAmbientSound () {
         return SoundEvents.IRON_GOLEM_ATTACK;
     }
 

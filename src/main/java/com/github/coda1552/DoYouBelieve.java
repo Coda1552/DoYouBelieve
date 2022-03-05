@@ -1,7 +1,6 @@
 package com.github.coda1552;
 
 import com.github.coda1552.common.entities.BigfootEntity;
-import com.github.coda1552.common.entities.FresnoEntity;
 import com.github.coda1552.common.entities.MothmanEntity;
 import com.github.coda1552.registry.*;
 import com.hugomage.doyoubelieve.registry.*;

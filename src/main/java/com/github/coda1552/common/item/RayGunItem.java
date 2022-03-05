@@ -1,6 +1,6 @@
 package com.github.coda1552.common.item;
 
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.controller.AnimationController;
@@ -18,17 +18,14 @@ public class RayGunItem extends Item implements IAnimatable, ISyncable {
         GeckoLibNetwork.registerSyncable(this);
     }
 
-
-
     private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
         // Not setting an animation here as that's handled below
         return PlayState.CONTINUE;
     }
 
-
     @Override
     public void registerControllers(AnimationData data) {
-        AnimationController controller = new AnimationController(this, "controller", 20, this::predicate);
+        AnimationController<RayGunItem> controller = new AnimationController<>(this, "controller", 20, this::predicate);
         data.addAnimationController(controller);
     }
 

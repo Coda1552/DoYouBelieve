@@ -1,3 +1,4 @@
+/*
 package com.github.coda1552.common.entities;
 
 import net.minecraft.block.BlockState;
@@ -87,3 +88,4 @@ public class JerseyDevilEntity extends MonsterEntity implements IFlyingAnimal {
         }
     }
 }
+*/

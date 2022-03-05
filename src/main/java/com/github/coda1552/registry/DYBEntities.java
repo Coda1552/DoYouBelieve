@@ -21,8 +21,8 @@ public class DYBEntities {
     public static final RegistryObject<EntityType<BigfootEntity>> BIGFOOT = create("bigfoot",
             EntityType.Builder.of(BigfootEntity::new, MobCategory.CREATURE).sized(1.0f,3.3f));
 
-    public static final RegistryObject<EntityType<FresnoEntity>> FRESNO = create("fresno_nightcrawler",
-            EntityType.Builder.of(FresnoEntity::new, MobCategory.MONSTER).sized(1.0f,1.5f));
+    //public static final RegistryObject<EntityType<FresnoEntity>> FRESNO = create("fresno_nightcrawler",
+    //        EntityType.Builder.of(FresnoEntity::new, MobCategory.MONSTER).sized(1.0f,1.5f));
 
     public static final RegistryObject<EntityType<MothmanEntity>> MOTHMAN = create("mothman",
             EntityType.Builder.of(MothmanEntity::new, MobCategory.MONSTER).sized(1.2f,2.5f));
