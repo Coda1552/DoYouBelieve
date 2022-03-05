@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.minecraftforge:javafmllanguage:1.18.2-40.0.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge/javafmllanguage/1.18.2-40.0.2/8e05d121a027d6dec1282bc5b2d4058ba3fac180/javafmllanguage-1.18.2-40.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge/javafmllanguage/1.18.2-40.0.2/1fd1590fde84902c92d5a27ed81efb037d767fe/javafmllanguage-1.18.2-40.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

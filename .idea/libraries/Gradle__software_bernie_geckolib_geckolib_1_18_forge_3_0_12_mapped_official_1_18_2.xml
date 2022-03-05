@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: software.bernie.geckolib:geckolib-1.18-forge:3.0.12_mapped_official_1.18.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/forge_gradle/deobf_dependencies/software/bernie/geckolib/geckolib-1.18-forge/3.0.12_mapped_official_1.18.2/geckolib-1.18-forge-3.0.12_mapped_official_1.18.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/forge_gradle/deobf_dependencies/software/bernie/geckolib/geckolib-1.18-forge/3.0.12_mapped_official_1.18.2/geckolib-1.18-forge-3.0.12_mapped_official_1.18.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
