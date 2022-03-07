@@ -6,8 +6,8 @@ modId="doyoubelieve" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Do You Believe?" #mandatory
 #logoFile="examplemod.png" #optional
-credits="HugoMage, Wadoo, CrispyTwig" #optional
-authors="Noon, Coda" #optional
+credits="Wadoo, CrispyTwig" #optional
+authors="Noon, Coda, HugoMage" #optional
 description='''
 This is a long form description of the mod. You can write whatever you want here
 
