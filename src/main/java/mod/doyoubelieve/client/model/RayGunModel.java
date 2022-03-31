@@ -2,9 +2,8 @@ package mod.doyoubelieve.client.model;
 
 import mod.doyoubelieve.common.item.RayGunItem;
 import mod.doyoubelieve.DoYouBelieve;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
-
 
 public class RayGunModel extends AnimatedGeoModel<RayGunItem> {
 

@@ -1,23 +1,35 @@
 package mod.doyoubelieve.client.renderer.layer;
 
-import mod.doyoubelieve.common.entities.MothmanEntity;
+import com.mojang.blaze3d.vertex.PoseStack;
 import mod.doyoubelieve.DoYouBelieve;
-import com.hugomage.doyoubelieve.client.model.MothmanModel;
+import mod.doyoubelieve.common.entities.MothmanEntity;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.IEntityRenderer;
-import net.minecraft.client.renderer.entity.layers.AbstractEyesLayer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-@OnlyIn(Dist.CLIENT)
-public class MothmanEyeLayer<T extends MothmanEntity, M extends MothmanModel<T>> extends AbstractEyesLayer<T, M>{
-    protected static final RenderType MOTHMAN_EYES = RenderType.eyes(new ResourceLocation(DoYouBelieve.MOD_ID, "textures/entity/mothman_eyes.png"));
+import software.bernie.geckolib3.GeckoLib;
+import software.bernie.geckolib3.renderers.geo.GeoLayerRenderer;
+import software.bernie.geckolib3.renderers.geo.IGeoRenderer;
 
-    public MothmanEyeLayer(IEntityRenderer<T, M> p_i50921_1_) {
-        super(p_i50921_1_);
+@OnlyIn(Dist.CLIENT)
+public class MothmanEyeLayer<T extends MothmanEntity> extends GeoLayerRenderer<T> {
+    private static final RenderType EYES = RenderType.eyes(new ResourceLocation(DoYouBelieve.MOD_ID, "textures/entity/mothman_eyes.png"));
+    private static final ResourceLocation MODEL = new ResourceLocation(DoYouBelieve.MOD_ID, "geo/mothman.geo.json");
+
+    public MothmanEyeLayer(IGeoRenderer<T> entityRendererIn) {
+        super(entityRendererIn);
     }
 
-    public RenderType renderType() {
-        return MOTHMAN_EYES;
+    @Override
+    public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entityLivingBaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        RenderType cameo = EYES;
+        matrixStackIn.pushPose();
+        //Move or scale the model as you see fit
+        this.getRenderer().render(this.getEntityModel().getModel(MODEL), entityLivingBaseIn, partialTicks, cameo, matrixStackIn, bufferIn,
+                bufferIn.getBuffer(cameo), packedLightIn, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
+        matrixStackIn.popPose();
+
     }
 }

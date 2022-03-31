@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DoYouBelieveMod.iml" filepath="$PROJECT_DIR$/.idea/modules/DoYouBelieveMod.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DoYouBelieveMod.main.iml" filepath="$PROJECT_DIR$/.idea/modules/DoYouBelieveMod.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DoYouBelieveMod.test.iml" filepath="$PROJECT_DIR$/.idea/modules/DoYouBelieveMod.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DoYouBelieve.iml" filepath="$PROJECT_DIR$/.idea/modules/DoYouBelieve.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DoYouBelieve.main.iml" filepath="$PROJECT_DIR$/.idea/modules/DoYouBelieve.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DoYouBelieve.test.iml" filepath="$PROJECT_DIR$/.idea/modules/DoYouBelieve.test.iml" />
     </modules>
   </component>
 </project>
